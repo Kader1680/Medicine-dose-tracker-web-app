@@ -1,52 +1,52 @@
 const express = require("express")
 const app = express()
-const ejs = require("ejs")
 const path = require("path");
-const {MongoClient} = require("mongodb")
-const url = "mongodb+srv://root:0000@medtracker.qiq8b.mongodb.net/?retryWrites=true&w=majority&appName=medtracker"
+const PORT = 3000
+const mongoose = require("mongoose")
 
-// connnect to client cluster
-const client = new MongoClient(url)
-
-
-async function run() {
-    try {
-
-        await client.connect();
-
-        console.log("Successfully connected to Atlas");
-
-    } catch (err) {
-
-        console.log(err.stack);
-
-    }
-
-    finally {
-
-        await client.close();
-
-    }
-
-}
-run().catch(console.dir);
-
+app.set('view engine', 'ejs');
 app.set("views", path.join(__dirname, "views"));
- 
-
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.json());
+const login = require("./router/login")
+const home = require("./router/home");
 
-app.get('/', (req, res)=>{
-    res.render('home')
-})
 
-app.post('/', (req, res)=>{
+
+const Medecine = require('./models/Medicine');
+const medecine = require("./router/medecines")
+app.use("/login", login)
+
+
+app.use("/api/medecines", medecine)
+app.use("/medecines", medecine)
+
+app.use(express.json()); // This middleware is needed to parse the request body
+
+app.post('/api/add', async (req, res) => {
+  try {
     
-})
-app.get('/login', (req, res)=>{
-    res.send('hellow from the login')
-})
+    
+
+    
+    const connectDB = require("./config/db")
+    const newMedicine = await Medecine.create(req.body); 
+
+    // Send a success response with the created medicine data
+    res.status(201).json({ success: true, data: newMedicine });
+  } catch (error) {
+    // Handle any errors by sending a failure response
+    res.status(400).json({ success: false, message: error.message });
+  }
+});
+
+
+app.use("/", home)
 
 
 
-app.listen('3000', ()=>console.log("the server is start running"))
+
+
+
+
+app.listen(PORT, ()=>console.log(`the server is start running on the port ${PORT}`))
