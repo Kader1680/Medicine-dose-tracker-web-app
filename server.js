@@ -18,8 +18,12 @@ const medecine = require("./router/medecines")
 app.use("/login", login)
 
 
-app.use("/api/medecines", medecine)
-app.use("/medecines", medecine)
+// ------------------- THE API SECTION ---------------------------
+app.use("/api", medecine)
+
+
+
+app.use("/", medecine)
 
 app.use(express.json()); // This middleware is needed to parse the request body
 
@@ -41,7 +45,14 @@ app.post('/api/add', async (req, res) => {
 });
 
 
+
 app.use("/", home)
+
+const addMedecine = require("./router/addMedecine")
+
+app.use("/", addMedecine)
+app.use("/", addMedecine)
+
 
 
 

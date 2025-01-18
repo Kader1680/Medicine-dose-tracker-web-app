@@ -13,6 +13,7 @@
           <h2 class="text-3xl font-bold text-green-600 text-center py-6">Tracked Medicines</h2>
           <div class="overflow-x-auto">
             
+            
           
             <table class="w-full table-auto border-collapse">
               <thead>
@@ -26,20 +27,35 @@
               </thead>
               <tbody class="text-gray-800">
                 <!-- Sample Row -->
+                <% medecines.map((item) => { %>
                 <tr class="hover:bg-gray-100 border-t">
-                  qsq
-                  <td class="px-4 py-3">1</td>
-                  <td class="px-4 py-3">Paracetamol</td>
-                  <td class="px-4 py-3">500mg</td>
-                  <td class="px-4 py-3">Twice a day</td>
-                  <td class="px-4 py-3">
+                  
+
+                    <td class="px-4 py-3"><%= item.id %></td>
+                    <td class="px-4 py-3"><%= item.Name %></td>
+                    <td class="px-4 py-3"><%= item.Dosage %> mg</td>
+                    <td class="px-4 py-3"><%= item.Frequency %> a day</td>
+                    <td class="px-4 py-3">
+               
+                   
+                    
+                    
+                    
+                  
+                    <button
+                      class="bg-yellow-400 text-white px-3 py-1 rounded-lg text-sm hover:bg-yellow-600"
+                    >
+                      Update
+                    </button>
                     <button
                       class="bg-red-500 text-white px-3 py-1 rounded-lg text-sm hover:bg-red-600"
                     >
-                      Delete
+                      <a href="/api/<%= item.id %>/remove">Delete</a>
                     </button>
                   </td>
                 </tr>
+                <% }); %>
+
                 <!-- Add more rows dynamically -->
               </tbody>
             </table>

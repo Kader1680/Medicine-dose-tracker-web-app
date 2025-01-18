@@ -5,8 +5,7 @@ exports.addMedicine = async (req, res) => {
     const { Name, Dosage, Frequency} = req.body;
     
     try {
-    const db = await connectDB(); // Get the MongoDB database connection
-    const collection = db.collection('medicines'); // Access the collection
+    
       const newMedicine = await Medecine.create({
         Name,
         Dosage,
@@ -18,8 +17,4 @@ exports.addMedicine = async (req, res) => {
     }
   };
 
-  process.on('SIGINT', async () => {
-    await closeDB(); // Close MongoDB connection
-    console.log('Application terminated. MongoDB connection closed.');
-    process.exit(0);
-  });
+  

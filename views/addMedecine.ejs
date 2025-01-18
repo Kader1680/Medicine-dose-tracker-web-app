@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Home Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
+</head>
+<body class="bg-gray-100">
+  <!-- Navbar -->
+  <nav class="bg-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between items-center">
+        <div class="flex space-x-4">
+          <!-- Logo -->
+          <div>
+            <a href="#" class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
+             
+              <img src="/logo.png" width="80" height="80">
+            </a>
+          </div>
+          <!-- Primary Nav -->
+          <div class="hidden md:flex items-center space-x-1">
+            <a href="#" class="py-5 px-3 text-gray-700 hover:text-gray-900">Home</a>
+            <a href="#" class="py-5 px-3 text-gray-700 hover:text-gray-900">About</a>
+            <a href="#" class="py-5 px-3 text-gray-700 hover:text-gray-900">Services</a>
+            <a href="#" class="py-5 px-3 text-gray-700 hover:text-gray-900">Contact</a>
+          </div>
+        </div>
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden flex items-center">
+          <button class="mobile-menu-button">
+            <svg
+              class="h-6 w-6 text-gray-700"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden md:hidden">
+      <a href="#" class="block py-2 px-4 text-sm hover:bg-gray-200">Home</a>
+      <a href="#" class="block py-2 px-4 text-sm hover:bg-gray-200">About</a>
+      <a href="#" class="block py-2 px-4 text-sm hover:bg-gray-200">Services</a>
+      <a href="#" class="block py-2 px-4 text-sm hover:bg-gray-200">Contact</a>
+    </div>
+  </nav>
+
+    <div class="bg-white shadow-xl rounded-lg p-8 w-full max-w-lg border border-gray-200">
+      <h1 class="text-3xl font-bold text-center text-green-600 mb-6">Track Your Medicine</h1>
+      <form action="/add" method="POST" class="space-y-6">
+        <!-- Name of Medicine -->
+        <div>
+          <label for="Name" class="block text-sm font-medium text-gray-700">Name of Medicine</label>
+          <input
+            type="text"
+            id="Name"
+            name="Name"
+            placeholder="Enter medicine name"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+          />
+        </div>
+  
+        <!-- Dosage -->
+        <div>
+          <label for="Dosage" class="block text-sm font-medium text-gray-700">Dosage (mg)</label>
+          <input
+            type="number"
+            id="Dosage"
+            name="Dosage"
+            placeholder="Enter Dosage"
+            min="1" max="1000"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+          />
+        </div>
+  
+        <!-- Frequency -->
+        <div>
+          <label for="Frequency" class="block text-sm font-medium text-gray-700">Frequency (times per day)</label>
+          <input
+            type="number"
+            id="Frequency"
+            name="Frequency"
+            placeholder="Enter Frequency"
+            min="1" max="5"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+          />
+        </div>
+  
+        <!-- Date Range -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label for="start_date" class="block text-sm font-medium text-gray-700">Start Date</label>
+            <input
+              type="date"
+              id="start_date"
+              name="start_date"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+            />
+          </div>
+          <div>
+            <label for="end_date" class="block text-sm font-medium text-gray-700">End Date</label>
+            <input
+              type="date"
+              id="end_date"
+              name="end_date"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+            />
+          </div>
+        </div>
+  
+        <!-- Save Button -->
+        <div class="text-center">
+          <button
+            type="submit"
+            class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-green-500"
+          >
+            Save Medicine
+          </button>
+        </div>
+      </form>
+    </div>
+
+
+
+  
+
+  <script>
+    const btn = document.querySelector(".mobile-menu-button");
+    const menu = document.querySelector(".mobile-menu");
+    btn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+    });
+  </script>
+</body>
+</html>
