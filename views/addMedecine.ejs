@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Responsive Home Page</title>
   <script src="https://cdn.tailwindcss.com"></script>
-
-
 </head>
 <body class="bg-gray-100">
   <!-- Navbar -->
@@ -17,7 +15,6 @@
           <!-- Logo -->
           <div>
             <a href="#" class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
-             
               <img src="/logo.png" width="80" height="80">
             </a>
           </div>
@@ -32,19 +29,8 @@
         <!-- Mobile Menu Button -->
         <div class="md:hidden flex items-center">
           <button class="mobile-menu-button">
-            <svg
-              class="h-6 w-6 text-gray-700"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
+            <svg class="h-6 w-6 text-gray-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
             </svg>
           </button>
         </div>
@@ -59,84 +45,90 @@
     </div>
   </nav>
 
-    <div class="bg-white shadow-xl rounded-lg p-8 w-full max-w-lg border border-gray-200">
-      <h1 class="text-3xl font-bold text-center text-green-600 mb-6">Track Your Medicine</h1>
-      <form action="/add" method="POST" class="space-y-6">
-        <!-- Name of Medicine -->
-        <div>
-          <label for="Name" class="block text-sm font-medium text-gray-700">Name of Medicine</label>
-          <input
-            type="text"
-            id="Name"
-            name="Name"
-            placeholder="Enter medicine name"
-            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
-          />
-        </div>
-  
-        <!-- Dosage -->
-        <div>
-          <label for="Dosage" class="block text-sm font-medium text-gray-700">Dosage (mg)</label>
-          <input
-            type="number"
-            id="Dosage"
-            name="Dosage"
-            placeholder="Enter Dosage"
-            min="1" max="1000"
-            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
-          />
-        </div>
-  
-        <!-- Frequency -->
-        <div>
-          <label for="Frequency" class="block text-sm font-medium text-gray-700">Frequency (times per day)</label>
-          <input
-            type="number"
-            id="Frequency"
-            name="Frequency"
-            placeholder="Enter Frequency"
-            min="1" max="5"
-            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
-          />
-        </div>
-  
-        <!-- Date Range -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label for="Start" class="block text-sm font-medium text-gray-700">Start Date</label>
-            <input
-              type="date"
-              id="Start"
-              name="Start"
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
-            />
-          </div>
-          <div>
-            <label for="End" class="block text-sm font-medium text-gray-700">End Date</label>
-            <input
-              type="date"
-              id="End"
-              name="End"
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
-            />
-          </div>
-        </div>
-  
-        <!-- Save Button -->
-        <div class="text-center">
-          <button
-            type="submit"
-            class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-green-500"
-          >
-            Save Medicine
-          </button>
-        </div>
-      </form>
-    </div>
+  <div class="bg-white shadow-xl rounded-lg p-8 w-full max-w-lg border border-gray-200">
+    <h1 class="text-3xl font-bold text-center text-green-600 mb-6">Track Your Medicine</h1>
+    <form action="/add" method="POST" class="space-y-6">
+      <!-- Name of Medicine -->
+      <div>
+        <label for="Name" class="block text-sm font-medium text-gray-700">Name of Medicine</label>
+        <input
+          type="text"
+          id="Name"
+          name="Name"
+          placeholder="Enter medicine name"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+        />
+      </div>
 
+      <!-- Dosage -->
+      <div>
+        <label for="Dosage" class="block text-sm font-medium text-gray-700">Dosage (mg)</label>
+        <input
+          type="number"
+          id="Dosage"
+          name="Dosage"
+          placeholder="Enter Dosage"
+          min="1" max="1000"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+        />
+      </div>
 
+      <!-- Frequency -->
+      <div>
+        <label for="Frequency" class="block text-sm font-medium text-gray-700">Frequency (times per day)</label>
+        <input
+          type="number"
+          id="Frequency"
+          name="Frequency"
+          placeholder="Enter Frequency"
+          min="1" max="5"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+        />
+      </div>
 
-  
+      <!-- Select Date -->
+      <div class="mb-4">
+        <label for="date" class="block text-gray-700 font-medium mb-2">Select Date</label>
+        <input type="date" id="date" name="date" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+      </div>
+
+      <!-- Select Time -->
+      <div class="mb-4">
+        <label for="time" class="block text-gray-700 font-medium mb-2">Select Time</label>
+        <input type="time" id="time" name="time" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+      </div>
+
+      <!-- Select Day -->
+      <div class="mb-4">
+        <label for="day" class="block text-gray-700 font-medium mb-2">Select Day</label>
+        <select id="day" name="day" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <option value="monday">Monday</option>
+          <option value="tuesday">Tuesday</option>
+          <option value="wednesday">Wednesday</option>
+          <option value="thursday">Thursday</option>
+          <option value="friday">Friday</option>
+          <option value="saturday">Saturday</option>
+          <option value="sunday">Sunday</option>
+        </select>
+      </div>
+
+      <!-- Select Hour -->
+      <div class="mb-4">
+        <label for="hour" class="block text-gray-700 font-medium mb-2">Select Hour</label>
+        <input type="number" id="hour" name="hour" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" min="1" max="12" placeholder="Hour (1-12)" required>
+      </div>
+
+      <!-- Save Button -->
+      <div class="text-center">
+        <button
+          type="submit"
+          class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-green-500"
+        >
+          Save Medicine
+        </button>
+      </div>
+    </form>
+  </div>
 
   <script>
     const btn = document.querySelector(".mobile-menu-button");

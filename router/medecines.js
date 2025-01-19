@@ -24,9 +24,7 @@ router.get('/medecines', async (req, res)=>{
         } catch (error) {
             res.status(500).json({message:error})
         }
-
-        
-    res.render("medecines")
+ 
 })
 
 // update the medecine 
@@ -61,23 +59,26 @@ router.put('/:id/edit', async (req, res)=>{
 // delete the medecine 
 
 
-router.delete('/:id/remove', async (req, res)=>{
+router.post('/:id', async (req, res)=>{
         
     try {
 
         const idMedecine = await Medicine.findByIdAndDelete(req.params.id)
+        console.log(idMedecine)
 
         if (!idMedecine) {
             res.status(404).json({message: "medecine not found"})
         }
-        res.status(200).json({message: "Done, Medecine has Deleted"})
-        // res.render('medecines', { medecines : allMedecines })
+        // res.status(200).json({message: "Done, Medecine has Deleted"})
+        const allMedecines = await Medicine.find({})
+        // res.status(200).json(allMedecines)
+        res.render('medecines', { medecines : allMedecines });
+
     } catch (error) {
         res.status(500).json({message:error})
     }
 
 })
-
 
 
 

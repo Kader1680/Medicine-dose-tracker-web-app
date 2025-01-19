@@ -1,6 +1,7 @@
 const Medecine = require("../models/Medicine")
 const bodyParser = require('body-parser');
 const { connectDB, closeDB } = require('../config/db'); // Import the connection methods
+
 exports.addMedicine = async (req, res) => {
     const { Name, Dosage, Frequency} = req.body;
     
