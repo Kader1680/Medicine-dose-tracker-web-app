@@ -10,21 +10,25 @@ app.use(express.static(path.join(__dirname, "public")));
 const mongoose = require("mongoose");
 const Medicine = require('../models/Medicine');
 
-
-app.use(express.json());
+const bodyParser = require('body-parser');
 
 // Middleware to parse URL-encoded data
+ 
+// parse requests of content-type - application/json
+app.use(express.json());
+
+// parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
 router.post('/add', async (req, res)=>{
     
     try {
-        const { Name, Dosage, Frequency } = req.body     
-        const allMedecines = await Medicine.create({ Name, Dosage, Frequency })
-        res.send(allMedecines)
-        
-         
-     
+            
+        const { Name, Dosage, Frequency, Start, End } = req.body   
+        console.log({ Name, Dosage, Frequency, Start, End })
+        const createMedecine = await Medicine.create({ Name, Dosage, Frequency, Start, End })
+        const result = await createMedecine.save();
+        res.redirect("/medecines")
     } catch (error) {
         res.send(error)
         

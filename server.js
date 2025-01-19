@@ -20,44 +20,22 @@ app.use("/login", login)
 
 // ------------------- THE API SECTION ---------------------------
 app.use("/api", medecine)
-
-
+// ------------------- THE Client SECTION ---------------------------
 
 app.use("/", medecine)
-
-app.use(express.json()); // This middleware is needed to parse the request body
-
-app.post('/api/add', async (req, res) => {
-  try {
-    
-    
-
-    
-    const connectDB = require("./config/db")
-    const newMedicine = await Medecine.create(req.body); 
-
-    // Send a success response with the created medicine data
-    res.status(201).json({ success: true, data: newMedicine });
-  } catch (error) {
-    // Handle any errors by sending a failure response
-    res.status(400).json({ success: false, message: error.message });
-  }
-});
-
-
-
 app.use("/", home)
 
+// parse requests of content-type - application/json
+app.use(express.json());
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
+
+
 const addMedecine = require("./router/addMedecine")
+ 
 
-app.use("/", addMedecine)
-app.use("/", addMedecine)
-
-
-
-
-
-
+app.use("", addMedecine)
 
 
 app.listen(PORT, ()=>console.log(`the server is start running on the port ${PORT}`))
