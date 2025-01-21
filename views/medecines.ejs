@@ -22,6 +22,7 @@
                   <th class="px-4 py-3 text-sm font-medium text-gray-700 border-b">Name</th>
                   <th class="px-4 py-3 text-sm font-medium text-gray-700 border-b">Dosage</th>
                   <th class="px-4 py-3 text-sm font-medium text-gray-700 border-b">Frequency</th>
+                  <th class="px-4 py-3 text-sm font-medium text-gray-700 border-b">Days Taken</th>
                   <th class="px-4 py-3 text-sm font-medium text-gray-700 border-b">Options</th>
                   <th class="px-4 py-3 text-sm font-medium text-gray-700 border-b">Start</th>
                   <!-- <th class="px-4 py-3 text-sm font-medium text-gray-700 border-b">Tracking</th> -->
@@ -38,6 +39,8 @@
                     <td class="px-4 py-3"><%= item.Name %></td>
                     <td class="px-4 py-3"><%= item.Dosage %> mg</td>
                     <td class="px-4 py-3"><%= item.Frequency %> a day</td>
+                    <td class="px-4 py-3"><%= item.dayTaken %></td>
+                    
                     <td class="px-4 py-3">
                       <select name="options" id="">
                         <option value="Snooze">Mark as Taken</option>

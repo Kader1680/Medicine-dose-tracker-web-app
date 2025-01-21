@@ -21,24 +21,24 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-router.delete('/:id', async (req, res)=>{
+// router.delete('/:id', async (req, res)=>{
         
-    try {
+//     try {
 
-        const idMedecine = await Medicine.findByIdAndDelete(req.params.id)
-        console.log(idMedecine)
+//         const idMedecine = await Medicine.findByIdAndDelete(req.params.id)
+//         console.log(idMedecine)
 
-        if (!idMedecine) {
-            res.status(404).json({message: "medecine not found"})
-        }
-        res.status(200).json({message: "Done, Medecine has Deleted"})
+//         if (!idMedecine) {
+//             res.status(404).json({message: "medecine not found"})
+//         }
+//         res.status(200).json({message: "Done, Medecine has Deleted"})
         
 
-    } catch (error) {
-        res.status(500).json({message:error})
-    }
+//     } catch (error) {
+//         res.status(500).json({message:error})
+//     }
 
-})
+// })
 
 
 

@@ -28,7 +28,7 @@ router.get('/medecines', async (req, res)=>{
 })
 
 // update the medecine 
-router.put('/:id/edit', async (req, res)=>{
+router.get('/:id/edit', async (req, res)=>{
         
         const { id } = req.params;   
         const { Name, Dosage, Frequency } = req.body;   // destrucor data from request body
@@ -59,7 +59,7 @@ router.put('/:id/edit', async (req, res)=>{
 // delete the medecine 
 
 
-router.post('/:id', async (req, res)=>{
+router.delete('/:id', async (req, res)=>{
         
     try {
 

@@ -27,7 +27,7 @@ app.use("/login", login)
 
 
 // ------------------- THE API SECTION ---------------------------
-app.use("/api", medecine)
+// app.use("/api", medecine)
 // ------------------- THE Client SECTION ---------------------------
 
 app.use("/", medecine)
