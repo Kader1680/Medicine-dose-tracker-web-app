@@ -8,7 +8,6 @@ app.set('view engine', 'ejs');
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
-const login = require("./router/login")
 const home = require("./router/home");
 
 
@@ -23,7 +22,6 @@ app.use(methodOverride('_method'));
 const Medecine = require('./models/Medicine');
 const medecine = require("./router/medecines")
 const deleteMedecine = require("./router/deleteMedecine")
-app.use("/login", login)
 
 
 // ------------------- THE API SECTION ---------------------------
@@ -49,5 +47,7 @@ const report = require("./router/report")
 app.use("", addMedecine)
 app.use("", report)
 
-
+// authentication services
+const authenticationRouter = require("./router/auth")
+app.use("", authenticationRouter)
 app.listen(PORT, ()=>console.log(`the server is start running on the port ${PORT}`))
