@@ -27,26 +27,28 @@ router.post('/add', async (req, res)=>{
     try {
             
         const {  Name, Dosage, Frequency, Start, dayTaken, Time } = req.body   
-        const time = Time;
+       
         const hours = Time.split(':')[0]
+
         console.log(hours)
 
         const currentTime = new Date().getHours();
 
         const distance = hours - currentTime;
+
         console.log(Math.abs(distance))
 
         console.log({  Name, Dosage, Frequency, Start, dayTaken, Time:distance })
         
         const createMedecine = await Medicine.create({ Name, Dosage, Frequency, Start, dayTaken, Time:distance  })
+        
         await createMedecine.save();
+        
         res.redirect("/medecines")
           
 
     } catch (error) {
         console.log(error)
-         
-        
     }
 })
 

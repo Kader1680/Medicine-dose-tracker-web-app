@@ -32,20 +32,39 @@
                         <!-- Sample Row -->
                         <% medecines.map((item) => { %>
                         <tr class="hover:bg-gray-100 border-t">
-                            <td class="px-4 py-3"><%= item.Name %></td>
-                            <td class="px-4 py-3"><%= item.Dosage %> mg</td>
-                            <td class="px-4 py-3"><%= item.Frequency %> a day</td>
-                            <td class="px-4 py-3"><%= item.dayTaken %></td>
+                            <td class="px-4 py-3"><span class="bg-gray-200 p-1 rounded-1"><%= item.Name %></span></td>
+                            <td class="px-4 py-3"><span class="bg-gray-200 p-1 rounded-1"><%= item.Dosage %> mg</span></td>
+                            <td class="px-4 py-3"><span class="bg-gray-200 p-1 rounded-1"><%= item.Frequency %> a day</span></td>
+                            <td class="px-4 py-3"> <span class="bg-blue-200 p-1 rounded-1"><%= item.dayTaken %></span></td>
                             <% if ( item.Time > 0) { %>
-                            <td class="px-4 py-3"><%= item.Time %> Hours Left</td>
+                            <td class="px-4 py-3"> <span class="bg-pink-200 p-1 rounded-1"><%= item.Time %> Hours Left</span></td>
                             <% } else { %>
-                            <td class="px-4 py-3">Take Now</td>
+                            <td class="px-4 py-3"><span class="bg-pink-200 p-1 rounded-1">Take Now</span></td>
                             <% } %>
                             <td class="px-4 py-3">
-                                <select name="options" id="">
-                                    <option value="Snooze">Mark as Taken</option>
-                                    <option value="Snooze">Snooze</option>
-                                </select>
+                               
+                            
+                                <% trackers.map((ele) => { %>
+                                    <% if ( ele.medicine == item.id ){ %>
+                                        
+                                        <p><%= ele.isTacken %></p>
+
+                                        <form action="/medecine" method="post">
+                                            <input name="id_medecine" type="text" value="<%= item.id %>" hidden>
+        
+                                            <select name ="isTacken" >
+                                                <option name ="isTacken" value="Took">Took</option>
+                                                <option name ="isTacken" value="Avoid">Avoid </option>
+                                                
+                                            </select>
+                                            <button class=" bg-green-300" type="submit">confirm</button>
+                                        </form>
+                                        
+                                    <% } %>
+                                 
+                                <% }); %>
+                               
+                               
                             </td>
                             <td class="px-4 py-3"><%= new Date(item.Start).toLocaleDateString() %></td>
                             <td class="px-4 py-3">

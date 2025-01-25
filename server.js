@@ -42,10 +42,12 @@ app.use(express.urlencoded({ extended: true }));
 
 const addMedecine = require("./router/addMedecine")
 const report = require("./router/report")
+const tracker = require("./router/tracker")
  
 
 app.use("", addMedecine)
 app.use("", report)
+app.use("", tracker)
 
 // authentication services
 const authenticationRouter = require("./router/auth")

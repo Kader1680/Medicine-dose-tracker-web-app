@@ -9,51 +9,94 @@
 </head>
 <body>
 
-    <div class="min-h-screen bg-gray-50 px-4 py-6">
-        <%- include('partials/navbars') %>
+  <%- include('partials/navbars') %>
+    
 
-        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md border border-gray-200">
-          <h2 class="text-3xl font-bold text-green-600 text-center py-6">Report Tracked</h2>
-          <div class="overflow-x-auto">
-            
-            
-          
-            <table class="w-full table-auto border-collapse">
-              <thead>
-                <tr class="bg-green-100 text-left">
-                  <!-- <th class="px-4 py-3 text-sm font-medium text-gray-700 border-b">#</th> -->
-                  <th class="px-4 py-3 text-sm font-medium text-gray-700 border-b">Name</th>
-                  <th class="px-4 py-3 text-sm font-medium text-gray-700 border-b">Medecines Most Taken</th>
-                  <th class="px-4 py-3 text-sm font-medium text-gray-700 border-b">Late</th>
-                  <th class="px-4 py-3 text-sm font-medium text-gray-700 border-b">Snoozing</th>
-                </tr>
-              </thead>
-              <tbody class="text-gray-800">
-                <!-- Sample Row -->
-                <% medecines.map((item) => { %>
-                <tr class="hover:bg-gray-100 border-t">
-                  
+    <div class="max-w-7xl mx-auto p-6 space-y-6">
 
-                    <!-- <td class="px-4 py-3"><%= item.id %></td> -->
-                    <td class="px-4 py-3"><%= item.Name %></td>
-                    <td class="px-4 py-3"><%= item.Dosage %> mg</td>
-                    <td class="px-4 py-3"><%= item.Frequency %> a day</td>
-                    
-                    <td class="px-4 py-3 fw-bolder text-red-500 bg-red-200">Missed</td>
-                    
-                </tr>
-                <% }); %>
-
-                <!-- Add more rows dynamically -->
-              </tbody>
-            </table>
+      <!-- Header -->
+      <header class="bg-white shadow rounded-lg p-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-gray-800">Medicine Tracker Report</h1>
+        <p class="text-gray-600">Date Range: <span class="font-medium">January 2025</span></p>
+      </header>
+  
+      <!-- Summary Section -->
+      <section class="bg-white shadow rounded-lg p-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="text-center">
+          <h2 class="text-xl font-bold text-gray-700">Adherence Percentage</h2>
+          <p class="text-3xl font-semibold text-green-600">90%</p>
+        </div>
+        <div class="text-center">
+          <h2 class="text-xl font-bold text-gray-700">Doses Missed</h2>
+          <p class="text-3xl font-semibold text-red-600">3</p>
+        </div>
+        <div class="text-center">
+          <h2 class="text-xl font-bold text-gray-700">Total Doses Taken</h2>
+          <p class="text-3xl font-semibold text-blue-600">27</p>
+        </div>
+      </section>
+  
+      <!-- Graphs Section -->
+      <section class="bg-white shadow rounded-lg p-6 space-y-4">
+        <h2 class="text-xl font-bold text-gray-800">Graphs</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-gray-100 rounded-lg h-40 flex items-center justify-center">
+            <p class="text-gray-500">Adherence Trend (Graph Placeholder)</p>
           </div>
-          <!-- Footer Section -->
-          <div class="py-4 px-6 bg-green-50 border-t text-center text-sm text-gray-700">
-            <p>Stay on track with your medications! 😊</p>
+          <div class="bg-gray-100 rounded-lg h-40 flex items-center justify-center">
+            <p class="text-gray-500">Medication Distribution (Graph Placeholder)</p>
           </div>
         </div>
-      </div>
+      </section>
+  
+      <!-- Logs Section -->
+      <section class="bg-white shadow rounded-lg p-6 space-y-4">
+        <h2 class="text-xl font-bold text-gray-800">Medication Logs</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full bg-white border border-gray-200">
+            <thead>
+              <tr>
+                <th class="px-4 py-2 border-b border-gray-200 text-left text-gray-600 font-medium">Date</th>
+                <th class="px-4 py-2 border-b border-gray-200 text-left text-gray-600 font-medium">Time</th>
+                <th class="px-4 py-2 border-b border-gray-200 text-left text-gray-600 font-medium">Medication</th>
+                <th class="px-4 py-2 border-b border-gray-200 text-left text-gray-600 font-medium">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="px-4 py-2 border-b border-gray-200">01/01/2025</td>
+                <td class="px-4 py-2 border-b border-gray-200">08:00 AM</td>
+                <td class="px-4 py-2 border-b border-gray-200">Paracetamol</td>
+                <td class="px-4 py-2 border-b border-gray-200 text-green-600">Taken</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 border-b border-gray-200">01/01/2025</td>
+                <td class="px-4 py-2 border-b border-gray-200">02:00 PM</td>
+                <td class="px-4 py-2 border-b border-gray-200">Vitamin C</td>
+                <td class="px-4 py-2 border-b border-gray-200 text-red-600">Missed</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+  
+      <!-- Insights Section -->
+      <section class="bg-white shadow rounded-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800">Insights</h2>
+        <p class="text-gray-600 mt-2">You are most consistent in the <span class="font-medium text-green-600">morning</span>, and often miss doses in the <span class="font-medium text-red-600">afternoon</span>.</p>
+      </section>
+  
+      <!-- Recommendations Section -->
+      <section class="bg-white shadow rounded-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800">Recommendations</h2>
+        <ul class="list-disc list-inside text-gray-600 space-y-2">
+          <li>Set a stronger reminder for afternoon doses.</li>
+          <li>Ensure you refill Paracetamol by <span class="font-medium">01/10/2025</span>.</li>
+          <li>Track your adherence next week to improve consistency.</li>
+        </ul>
+      </section>
+  
+    </div>
 </body>
 </html>
 

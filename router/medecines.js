@@ -8,6 +8,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 const mongoose = require("mongoose");
 const Medicine = require('../models/Medicine');
+const Tracker = require('../models/Tracker');
 
 
 app.use(express.json());
@@ -18,9 +19,12 @@ app.use(express.urlencoded({ extended: true }));
 router.get('/medecines', async (req, res)=>{
         
         try {
-            const allMedecines = await Medicine.find({})
-            // res.status(200).json(allMedecines)
-            res.render('medecines', { medecines : allMedecines });
+            const allMedecines = await Medicine.find({});
+            const allTrackers = await Tracker.find({});
+            res.render('medecines', { 
+                medecines: allMedecines, 
+                trackers: allTrackers 
+            });
         } catch (error) {
             res.status(500).json({message:error})
         }
