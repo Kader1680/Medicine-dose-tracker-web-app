@@ -21,8 +21,8 @@ router.post("/register", (req, res)=>{
         console.log({username, email, password})
         const newUser = User.create({username, email, password})
         newUser.save();
-        res.send('user register sucessfuly')
-        res.redirect('/home')
+        // res.send('user register sucessfuly')
+        res.redirect('/')
     } catch (error) {
         res.send(error)
     }

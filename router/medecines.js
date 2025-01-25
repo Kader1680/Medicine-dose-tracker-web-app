@@ -59,7 +59,7 @@ router.get('/:id/edit', async (req, res)=>{
 // delete the medecine 
 
 
-router.post('/:id', async (req, res)=>{
+router.delete('/:id', async (req, res)=>{
         
     try {
 
