@@ -17,7 +17,6 @@ router.get("/login", (req, res)=>{
 router.post("/login", async (req, res)=>{
     try {
         const {email, password} = req.body
-        // console.log({email, password}) 
         // check the user exist by email
         const user = await User.findOne({email}).select("+password")
         console.log(user.password)
@@ -27,16 +26,20 @@ router.post("/login", async (req, res)=>{
         // }
         // check the password 
         const isPasswordValid = await bcrypt.compare(
-            `${req.body.password}`,
+            `${password}`,
             user.password
         )
-        if (!isPasswordValid)
-            return res.status(401).json({
-                status: "failed",
-                data: [],
-                message:
-                    "Invalid email or password. Please try again with the correct credentials.",
-            });
+        if (!isPasswordValid){
+            res.redirect('/login')
+
+        }
+
+            // return res.status(401).json({
+            //     status: "failed",
+            //     data: [],
+            //     message:
+            //         "Invalid email or password. Please try again with the correct credentials.",
+            // });
         // return user info except password
          
 
@@ -44,7 +47,7 @@ router.post("/login", async (req, res)=>{
         
 
     } catch (error) {
-        res.send(error)
+        console.log(error)
         
     }
  })
@@ -62,7 +65,7 @@ router.post("/register", async (req, res)=>{
         // res.send('user register sucessfuly')
         res.redirect('/')
     } catch (error) {
-        res.send(error)
+        console.log(error)
     }
  })
  
