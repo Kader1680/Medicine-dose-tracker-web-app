@@ -6,6 +6,13 @@
   <title>Responsive Home Page</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<style>
+  .d input:checked {
+    border: none;
+    outline: 2px solid deeppink;
+  }
+  
+</style>
 <body class=" bg-green-100">
   <%- include('partials/navbars') %>
 
@@ -58,35 +65,40 @@
       </div>
 
       <div class="grid grid-cols-2 gap-4 mb-4">
-        <!-- Saturday to Friday Days -->
-        <div class="flex items-center">
+        <div class="flex items-center dayTaken d">
           <input type="checkbox" id="saturday" name="dayTaken" value="Saturday" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
           <label for="dayTaken" class="ml-2 text-gray-700">Saturday</label>
         </div>
-        <div class="flex items-center">
+        <div class="flex items-center dayTaken">
           <input type="checkbox" id="sunday" name="dayTaken" value="Sunday" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
           <label for="dayTaken" class="ml-2 text-gray-700">Sunday</label>
         </div>
-        <div class="flex items-center">
+        <div class="flex items-center dayTaken">
           <input type="checkbox" id="monday" name="dayTaken" value="Monday" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
           <label for="dayTaken" class="ml-2 text-gray-700">Monday</label>
         </div>
-        <div class="flex items-center">
+        <div class="flex items-center dayTaken">
           <input type="checkbox" id="tuesday" name="dayTaken" value="Tuesday" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
           <label for="dayTaken" class="ml-2 text-gray-700">Tuesday</label>
         </div>
-        <div class="flex items-center">
+        <div class="flex items-center dayTaken">
           <input type="checkbox" id="wednesday" name="dayTaken" value="Wednesday" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
           <label for="dayTaken" class="ml-2 text-gray-700">Wednesday</label>
         </div>
-        <div class="flex items-center">
+        <div class="flex items-center dayTaken">
           <input type="checkbox" id="thursday" name="dayTaken" value="Thursday" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
           <label for="dayTaken" class="ml-2 text-gray-700">Thursday</label>
         </div>
-        <div class="flex items-center">
+        <div class="flex items-center dayTaken">
           <input type="checkbox" id="friday" name="dayTaken" value="Friday" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
           <label for="dayTaken" class="ml-2 text-gray-700">Friday</label>
         </div>
+
+        <div class="flex items-center ">
+          <input type="checkbox" id="friday" name="dayTaken" value="Friday" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+          <label for="dayTaken" class="ml-2 text-gray-700 alldays">All Days</label>
+        </div>
+
       </div>
 
 
@@ -127,12 +139,19 @@
     </form>
   </div>
 
-  <script>
+  <!-- <script>
     const btn = document.querySelector(".mobile-menu-button");
     const menu = document.querySelector(".mobile-menu");
     btn.addEventListener("click", () => {
       menu.classList.toggle("hidden");
     });
-  </script>
+
+    const alldays = document.querySelector(".alldays");
+    const dayTaken = document.querySelectorAll(".dayTaken");
+    
+    alldays.addEventListener('click', ()=>{
+      
+    })
+  </script> -->
 </body>
 </html>

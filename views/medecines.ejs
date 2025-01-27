@@ -30,17 +30,41 @@
                     </thead>
                     <tbody class="text-gray-800">
                         <!-- Sample Row -->
+                        
+                        
+                        <% a.map((item) => { %>
+                        
+                            <p><%= item.Time %></p>
+                        <% }); %>
                         <% medecines.map((item) => { %>
                         <tr class="hover:bg-gray-100 border-t">
                             <td class="px-4 py-3"><span class="bg-gray-200 p-1 rounded-1"><%= item.Name %></span></td>
                             <td class="px-4 py-3"><span class="bg-gray-200 p-1 rounded-1"><%= item.Dosage %> mg</span></td>
                             <td class="px-4 py-3"><span class="bg-gray-200 p-1 rounded-1"><%= item.Frequency %> a day</span></td>
                             <td class="px-4 py-3"> <span class="bg-blue-200 p-1 rounded-1"><%= item.dayTaken %></span></td>
-                            <% if ( item.Time > 0) { %>
+                            <td class="px-4 py-3"> <span class="bg-pink-200 p-1 rounded-1">
+                                
+                                
+                                <%=
+                                
+                                
+                                item.Time
+                                
+                                
+                                %> 
+                                
+                                
+                                
+                                
+                                
+                                
+                                Hours Left</span></td>
+                            
+                            <!-- <% if ( item.Time > 0) { %>
                             <td class="px-4 py-3"> <span class="bg-pink-200 p-1 rounded-1"><%= item.Time %> Hours Left</span></td>
                             <% } else { %>
-                            <td class="px-4 py-3"><span class="bg-pink-200 p-1 rounded-1">Take Now</span></td>
-                            <% } %>
+                            <td class="px-4 py-3"><span class="bg-pink-200 p-1 rounded-1">Expired</span></td>
+                            <% } %> -->
                             <td class="px-4 py-3">
                                
                             
@@ -52,7 +76,7 @@
                                         <form action="/medecine" method="post">
                                             <input name="id_medecine" type="text" value="<%= item.id %>" hidden>
         
-                                            <select name ="isTacken" >
+                                            <select name ="isTacken"  >
                                                 <option name ="isTacken" value="Took">Took</option>
                                                 <option name ="isTacken" value="Avoid">Avoid </option>
                                                 
@@ -86,7 +110,32 @@
         </div>
         
     </div>
-  <%- include('partials/footer') %>
+  <!-- <%- include('partials/footer') %> -->
   
+
+
+  <script>
+ 
+
+// Set the date we're counting down to
+// var countDownDate = new Date("Jan 5, 2024 15:37:25").getTime();
+    // Get today's date and time
+    var now = new Date().getHours();
+    var now = new Date().getHours();
+        
+    // Find the distance between now and the count down date
+    // var distance = countDownDate - now;
+        
+    // Output the result in an element with id="demo"
+    console.log(now)
+        
+    // If the count down is over, write some text 
+    
+
+</script>
+
+
 </body>
+
+
 </html>

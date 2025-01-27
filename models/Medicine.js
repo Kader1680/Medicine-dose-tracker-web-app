@@ -3,9 +3,7 @@ const mongoose = require('mongoose');
 
 
 const medecineShema = new mongoose.Schema({
-    _id: {
-        type: String, // Change to String if strings are valid IDs for your use case
-    },
+    _id: mongoose.Schema.ObjectId,
     Name: { type: String},
     Dosage  : { type: Number},
     Frequency : { type: Number},
