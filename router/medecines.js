@@ -27,7 +27,7 @@ router.get('/medecines', async (req, res)=>{
 
           
             const allHours = await  Medicine.find({}, "Time -_id");
-            
+
             const newHours = [];
 
             // Iterate over allHours and calculate the distance
@@ -85,7 +85,7 @@ router.get('/:id/edit', async (req, res)=>{
 // delete the medecine 
 
 
-router.delete('/:id', async (req, res)=>{
+router.post('/:id', async (req, res)=>{
         
     try {
 

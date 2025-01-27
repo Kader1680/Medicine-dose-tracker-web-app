@@ -10,117 +10,91 @@
 
 <body class="min-h-screen bg-gray-50 ">
   <%- include('partials/navbars') %>
-    <div class=" w-full bg-white rounded-lg shadow-md border border-gray-200">
-        <h2 class="text-3xl font-bold text-green-600 text-center py-6">Tracked Medicines</h2>
-        <div class="overflow-hidden">
-            <!-- Make the table scrollable -->
-            <div class="overflow-y-auto max-h-[calc(100vh-200px)]">
-                <table class="w-full table-auto border-collapse">
-                    <thead>
-                        <tr class="bg-green-100 text-left">
-                            <th class="px-4 py-3 text-sm font-medium text-gray-700 border-b">Name</th>
-                            <th class="px-4 py-3 text-sm font-medium text-gray-700 border-b">Dosage</th>
-                            <th class="px-4 py-3 text-sm font-medium text-gray-700 border-b">Frequency</th>
-                            <th class="px-4 py-3 text-sm font-medium text-gray-700 border-b">Days Taken</th>
-                            <th class="px-4 py-3 text-sm font-medium text-gray-700 border-b">Reminder</th>
-                            <th class="px-4 py-3 text-sm font-medium text-gray-700 border-b">Options</th>
-                            <th class="px-4 py-3 text-sm font-medium text-gray-700 border-b">Start</th>
-                            <th class="px-4 py-3 text-sm font-medium text-gray-700 border-b">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-gray-800">
-                        <!-- Sample Row -->
-                        
-                   
-                     
-                        <% a.forEach((hour) => { %>
-
-                            <% if( hour <= 0  ) { %>
-                                <li>Distance for medicine : Please Take Your Medecines</li>
-
-                            <% } else{ %>
-                                <li>Distance for medicine : <%= hour %> hours</li>
-
-                            <% } %>
-
-
-                            
-                        <% }) %>
-
-                        <% medecines.map((item) => { %>
-                        <tr class="hover:bg-gray-100 border-t">
-                            <td class="px-4 py-3"><span class="bg-gray-200 p-1 rounded-1"><%= item.Name %></span></td>
-                            <td class="px-4 py-3"><span class="bg-gray-200 p-1 rounded-1"><%= item.Dosage %> mg</span></td>
-                            <td class="px-4 py-3"><span class="bg-gray-200 p-1 rounded-1"><%= item.Frequency %> a day</span></td>
-                            <td class="px-4 py-3"> <span class="bg-blue-200 p-1 rounded-1"><%= item.dayTaken %></span></td>
-                            <td class="px-4 py-3"> <span class="bg-pink-200 p-1 rounded-1">
-                                
-                                
-                                <%=
-                                
-                                
-                                item.Time
-                                
-                                
-                                %> 
-                                
-                                
-                                
-                                
-                                
-                                
-                                Hours Left</span></td>
-                            
-                            <!-- <% if ( item.Time > 0) { %>
-                            <td class="px-4 py-3"> <span class="bg-pink-200 p-1 rounded-1"><%= item.Time %> Hours Left</span></td>
-                            <% } else { %>
-                            <td class="px-4 py-3"><span class="bg-pink-200 p-1 rounded-1">Expired</span></td>
-                            <% } %> -->
-                            <td class="px-4 py-3">
-                               
-                            
-                                <% trackers.map((ele) => { %>
-                                    <% if ( ele.medicine == item.id ){ %>
-                                        
-                                        <p><%= ele.isTacken %></p>
-
-                                        <form action="/medecine" method="post">
-                                            <input name="id_medecine" type="text" value="<%= item.id %>" hidden>
-        
-                                            <select name ="isTacken"  >
-                                                <option name ="isTacken" value="Took">Took</option>
-                                                <option name ="isTacken" value="Avoid">Avoid </option>
-                                                
-                                            </select>
-                                            <button class=" bg-green-300" type="submit">confirm</button>
-                                        </form>
-                                        
-                                    <% } %>
-                                 
-                                <% }); %>
-                               
-                               
-                            </td>
-                            <td class="px-4 py-3"><%= new Date(item.Start).toLocaleDateString() %></td>
-                            <td class="px-4 py-3">
-                                <button class="bg-yellow-400 text-white px-3 py-1 rounded-lg text-sm hover:bg-yellow-600">
-                                    Update
-                                </button>
-                                <form action="/<%= item.id %>" method="POST" style="display:inline;">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded-lg text-sm hover:bg-red-600">
-                                        Delete
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                        <% }); %>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        
+  
+  <div class="w-full bg-white rounded-lg shadow-md border border-gray-200">
+    <h2 class="text-3xl font-bold text-green-600 text-center py-6">Tracked Medicines</h2>
+  
+    <!-- Flex container for two tables -->
+    <div class="flex flex-wrap lg:flex-nowrap gap-4 justify-between p-4">
+  
+      <!-- First table -->
+      <div class="w-full lg:w-2/3 overflow-x-auto">
+        <table class="w-full table-auto border border-gray-300 rounded-lg shadow-md">
+          <thead>
+            <tr class="bg-green-100 text-left">
+              <th class="px-4 py-3 text-sm font-medium text-gray-700 border border-gray-300">Name</th>
+              <th class="px-4 py-3 text-sm font-medium text-gray-700 border border-gray-300">Dosage</th>
+              <th class="px-4 py-3 text-sm font-medium text-gray-700 border border-gray-300">Frequency</th>
+              <th class="px-4 py-3 text-sm font-medium text-gray-700 border border-gray-300">Days Taken</th>
+              <th class="px-4 py-3 text-sm font-medium text-gray-700 border border-gray-300">Reminder</th>
+              <th class="px-4 py-3 text-sm font-medium text-gray-700 border border-gray-300">Options</th>
+              <th class="px-4 py-3 text-sm font-medium text-gray-700 border border-gray-300">Start</th>
+              <th class="px-4 py-3 text-sm font-medium text-gray-700 border border-gray-300">Action</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-800">
+            <% medecines.map((item) => { %>
+            <tr class="hover:bg-gray-100 border-t">
+              <td class="px-4 py-3 border border-gray-300"><%= item.Name %></td>
+              <td class="px-4 py-3 border border-gray-300"><%= item.Dosage %> mg</td>
+              <td class="px-4 py-3 border border-gray-300"><%= item.Frequency %> a day</td>
+              <td class="px-4 py-3 border border-gray-300"><%= item.dayTaken %></td>
+              <td class="px-4 py-3 border border-gray-300"><%= item.Time %> Hours Left</td>
+              <td class="px-4 py-3 border border-gray-300">
+                <% trackers.map((ele) => { %>
+                <% if (ele.medicine == item.id) { %>
+                <form action="/medecine" method="post">
+                  <input name="id_medecine" type="text" value="<%= item.id %>" hidden>
+                  <select name="isTacken" class="border rounded p-1">
+                    <option value="Took">Took</option>
+                    <option value="Avoid">Avoid</option>
+                  </select>
+                  <button class="bg-green-300 px-2 py-1 rounded" type="submit">Confirm</button>
+                </form>
+                <% } %>
+                <% }); %>
+              </td>
+              <td class="px-4 py-3 border border-gray-300"><%= new Date(item.Start).toLocaleDateString() %></td>
+              <td class="px-4 py-3 border border-gray-300">
+                <button class="bg-yellow-400 text-white px-3 py-1 rounded-lg text-sm hover:bg-yellow-600">Update</button>
+                <form action="/<%= item.id %>" method="POST" style="display:inline;">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded-lg text-sm hover:bg-red-600">Delete</button>
+                </form>
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+  
+      <!-- Second table -->
+      <div class="w-full lg:w-1/3 overflow-x-auto">
+        <table class="w-full border border-gray-300 rounded-lg shadow-md">
+          <thead>
+            <tr class="bg-gray-200 text-gray-700">
+              <th class="border border-gray-300 px-4 py-3 text-sm font-medium">Time Remaining</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% a.forEach((hour) => { %>
+            <% if (hour <= 0) { %>
+            <tr class="bg-red-100 text-red-600">
+              <td class="border border-gray-300">Time Expired (Please Take Your Medecine) </td>
+            </tr>
+            <% } else { %>
+            <tr class="bg-green-100 text-green-600">
+              <td style="padding: 30px ;" class="border border-gray-300"><%= hour %> hours</td>
+            </tr>
+            <% } %>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
+  
+
   <!-- <%- include('partials/footer') %> -->
   
 
