@@ -19,42 +19,33 @@ app.use(express.urlencoded({ extended: true }));
 
 router.get('/medecines', async (req, res)=>{
         
+    
+
         try {
             const allMedecines = await Medicine.find({});
             const allTrackers = await Tracker.find({});
 
-            // const distance = currentTime - hours;
-            const allHours = await  Medicine.find({}, "Time -_id");;
+          
+            const allHours = await  Medicine.find({}, "Time -_id");
             
+            const newHours = [];
 
-            console.log(allHours)
-            // var countDownDate = new Date().getDate();
-
-
-            // allHours.map((el)=> {
-            //     const formatHour = allHours.join(":00")
-            // })
-
-            // Get today's date and time
-            // var now = new Date().getHours();
+            // Iterate over allHours and calculate the distance
+            allHours.forEach(el => {
+                const now = new Date().getHours(); // Current hour
+                const medicineTime = parseInt(el.Time, 10); // Ensure Time is a number
+                const distance = now - medicineTime;
             
-            // Find the distance between now and the count down date
-            // var distance = countDownDate - now;
-                
-            // Time calculations for days, hours, minutes and seconds
-
-            // var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                
-            // Output the result in an element with id="demo"
-            // console.log(hours)
-                
-            // If the count down is over, write some text 
+                newHours.push(distance); // Add the distance to the newHours array
+            });
+            
+            
             
 
             res.render('medecines', { 
                 medecines: allMedecines, 
                 trackers: allTrackers ,
-                a:allHours
+                a:newHours
             });
         } catch (error) {
             res.status(500).json({message:error})
