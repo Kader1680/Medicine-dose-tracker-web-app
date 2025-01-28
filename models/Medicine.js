@@ -7,8 +7,7 @@ const medecineShema = new mongoose.Schema({
     Name: { type: String},
     Dosage  : { type: Number},
     Frequency : { type: Number},
-    Start : { type: Date}, 
-    Time : { type: Number}, 
+    Time : { type: Date}, 
     dayTaken : { type: [String] }
 })
 

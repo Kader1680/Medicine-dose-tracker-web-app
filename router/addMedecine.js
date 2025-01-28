@@ -26,25 +26,17 @@ router.post('/add', async (req, res)=>{
     
     try {
             
-        const {  Name, Dosage, Frequency, Start, dayTaken, Time } = req.body   
+        const {  Name, Dosage, Frequency, dayTaken, Time } = req.body   
        
-        const hours = Time.split(':')[0]
 
-        console.log(hours)
 
-        const currentTime = new Date().getHours();
-
-        // const distance = currentTime - hours;
-
-        
-
-        console.log({  Name, Dosage, Frequency, Start, dayTaken, Time  })
+        console.log({  Name, Dosage, Frequency, dayTaken, Time  })
         
         const createMedecine = await Medicine.create({ 
             
             _id: new mongoose.Types.ObjectId(), 
 
-            Name, Dosage, Frequency, Start, dayTaken, Time : hours  })
+            Name, Dosage, Frequency, dayTaken, Time  })
         
         await createMedecine.save();
 

@@ -26,17 +26,21 @@ router.get('/medecines', async (req, res)=>{
             const allTrackers = await Tracker.find({});
 
           
-            const allHours = await  Medicine.find({}, "Time -_id");
+            const Dates = await  Medicine.find({}, "Time -_id");
 
             const newHours = [];
 
             // Iterate over allHours and calculate the distance
-            allHours.forEach(el => {
-                const now = new Date().getHours(); // Current hour
-                const medicineTime = parseInt(el.Time, 10); // Ensure Time is a number
-                const distance = now - medicineTime;
-            
-                newHours.push(distance); // Add the distance to the newHours array
+            Dates.forEach((el) => {
+                if (el) {  
+                    const now = new Date();  
+                    const timeDate = new Date(el.Time);  
+                    const distance = timeDate - now ; // Difference in milliseconds
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); // Calculate hours
+                    newHours.push(hours);
+                } else {
+                    newHours.push(null); // Handle missing or invalid Time
+                }
             });
             
             
@@ -85,7 +89,7 @@ router.get('/:id/edit', async (req, res)=>{
 // delete the medecine 
 
 
-router.post('/:id', async (req, res)=>{
+router.delete('/:id', async (req, res)=>{
         
     try {
 
