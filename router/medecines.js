@@ -36,10 +36,10 @@ router.get('/medecines', async (req, res)=>{
                     const now = new Date();  
                     const timeDate = new Date(el.Time);  
                     const distance = timeDate - now ; // Difference in milliseconds
-                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); // Calculate hours
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                     newHours.push(hours);
                 } else {
-                    newHours.push(null); // Handle missing or invalid Time
+                    newHours.push(null); 
                 }
             });
             
@@ -58,31 +58,36 @@ router.get('/medecines', async (req, res)=>{
 })
 
 // update the medecine 
-router.get('/:id/edit', async (req, res)=>{
-        
-        const { id } = req.params;   
-        const { Name, Dosage, Frequency } = req.body;   // destrucor data from request body
 
-         
+router.get('/:id/edit', async (req, res)=>{
+   
+    const {id} = req.params.id
+    
+    return res.render("editMedecine", {id : id})
+
+})
+
+router.put('/:id/edit', async (req, res)=>{
+            
+        const { id } = req.params;
+        const { Name, Dosage, Frequency, dayTaken, Time } = req.body;
+
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).json({ message: 'Invalid ID format' });
         }
 
         const updatedMedicine = await Medicine.findByIdAndUpdate(
             id,
-            { Name, Dosage, Frequency },  
-            { new: true }  
+            { Name, Dosage, Frequency, dayTaken, Time },
+            { new: true, runValidators: true }
         );
 
-        
         if (!updatedMedicine) {
             return res.status(404).json({ message: "Medicine not found" });
         }
 
-         
-        res.status(200).json({ message: "Medicine updated successfully", updatedMedicine })
+        return res.redirect("/medecines");
         
-    
     })
 
 

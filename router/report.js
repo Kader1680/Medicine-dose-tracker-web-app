@@ -17,8 +17,12 @@ app.use(express.urlencoded({ extended: true }));
 router.get('/report', async (req, res)=>{
         
         try {
-            const allMedecines = await Medecine.find({})
-            res.render('report', { medecines : allMedecines });
+            const allMedecines = await Medecine.countDocuments()
+            const medecineMissed = await Medecine.find({})
+            res.render('report', { 
+                medecines : allMedecines,
+                medecineMissed : medecineMissed
+             });
         } catch (error) {
             res.status(500).json({message:error})
         }

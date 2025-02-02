@@ -23,13 +23,14 @@ const Medecine = require('./models/Medicine');
 const medecine = require("./router/medecines")
 const deleteMedecine = require("./router/deleteMedecine")
 
+const editMedecine = require("./router/medecines")
 
 // ------------------- THE API SECTION ---------------------------
 // app.use("/api", medecine)
 // ------------------- THE Client SECTION ---------------------------
 
 app.use("/", medecine)
- 
+app.use("/", editMedecine)
 
 app.use("/", home)
 

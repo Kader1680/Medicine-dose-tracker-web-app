@@ -21,14 +21,33 @@
       </header>
   
       <!-- Summary Section -->
-      <section class="bg-white shadow rounded-lg p-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <section class="bg-white shadow rounded-lg p-6 grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="text-center">
+          <h2 class="text-xl font-bold text-gray-700">Total Medecines</h2>
+          <p class="text-3xl font-semibold text-green-600"> 
+
+            <%= medecines %>
+
+          </p>
+        </div>
+
         <div class="text-center">
           <h2 class="text-xl font-bold text-gray-700">Adherence Percentage</h2>
           <p class="text-3xl font-semibold text-green-600">90%</p>
         </div>
         <div class="text-center">
           <h2 class="text-xl font-bold text-gray-700">Doses Missed</h2>
-          <p class="text-3xl font-semibold text-red-600">3</p>
+          <p class="text-3xl font-semibold text-red-600">
+            
+            3
+
+         
+
+            <% medecineMissed.map((el) => { %>
+                 <p> <%= el  %></p>
+            <% }) %>
+
+          </p>
         </div>
         <div class="text-center">
           <h2 class="text-xl font-bold text-gray-700">Total Doses Taken</h2>
