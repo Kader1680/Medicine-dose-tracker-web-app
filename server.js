@@ -53,4 +53,34 @@ app.use("", tracker)
 // authentication services
 const authenticationRouter = require("./router/auth")
 app.use("", authenticationRouter)
+
+
+
+require("dotenv").config();
+const nodemailer = require("nodemailer");
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
+const mailOptions = {
+  from: process.env.EMAIL_USER,
+  to: "ouldhenniaabdelkader@gmail.com",
+  subject: "Hello from Nodemailer",
+  text: "This is a test email sent using Nodemailer securely.",
+};
+
+transporter.sendMail(mailOptions, (error, info) => {
+  if (error) {
+    console.error("Error sending email:", error);
+  } else {
+    console.log("Email sent:", info.response);
+  }
+});
+
+
 app.listen(PORT, ()=>console.log(`the server is start running on the port ${PORT}`))

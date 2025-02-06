@@ -43,6 +43,18 @@ router.get('/medecines', async (req, res)=>{
                 }
             });
             
+
+            
+
+            const newStatus  = await Tracker.create({
+
+                status : 6
+            });
+
+
+
+            await newStatus.save();
+
             
             
 
