@@ -17,6 +17,11 @@ app.use(express.json());
 // Middleware to parse URL-encoded data
 app.use(express.urlencoded({ extended: true }));
 
+const methodOverride = require('method-override');
+
+// Middleware to override the HTTP method
+app.use(methodOverride('_method'));
+
 router.get('/medecines', async (req, res)=>{
         
     
@@ -42,20 +47,7 @@ router.get('/medecines', async (req, res)=>{
                     newHours.push(null); 
                 }
             });
-            
 
-            
-
-            const newStatus  = await Tracker.create({
-
-                status : 6
-            });
-
-
-
-            await newStatus.save();
-
-            
             
 
             res.render('medecines', { 
@@ -81,51 +73,52 @@ router.get('/:id/edit', async (req, res)=>{
 
 router.put('/:id/edit', async (req, res)=>{
             
-        const { id } = req.params;
-        const { Name, Dosage, Frequency, dayTaken, Time } = req.body;
+    const { id } = req.params;
+    const { Name, Dosage, Frequency, dayTaken, Time } = req.body;
 
-        if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({ message: 'Invalid ID format' });
-        }
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({ message: 'Invalid ID format' });
+    }
 
-        const updatedMedicine = await Medicine.findByIdAndUpdate(
-            id,
-            { Name, Dosage, Frequency, dayTaken, Time },
-            { new: true, runValidators: true }
-        );
+    const updatedMedicine = await Medicine.findByIdAndUpdate(
+        id,
+        { Name, Dosage, Frequency, dayTaken, Time },
+        { new: true, runValidators: true }
+    );
 
-        if (!updatedMedicine) {
-            return res.status(404).json({ message: "Medicine not found" });
-        }
+    if (!updatedMedicine) {
+        return res.status(404).json({ message: "Medicine not found" });
+    }
 
-        return res.redirect("/medecines");
+    res.send(updatedMedicine);
         
+    
     })
 
 
 // delete the medecine 
 
 
-router.post('/:id', async (req, res)=>{
+// router.delete('/:id', async (req, res)=>{
         
-    try {
+//     try {
 
-        const idMedecine = await Medicine.findByIdAndDelete(req.params.id)
-        console.log(idMedecine)
+//         const idMedecine = await Medicine.findByIdAndDelete(req.params.id)
+//         console.log(idMedecine)
 
-        if (!idMedecine) {
-            res.status(404).json({message: "medecine not found"})
-        }
-        // res.status(200).json({message: "Done, Medecine has Deleted"})
-        const allMedecines = await Medicine.find({})
-        // res.status(200).json(allMedecines)
-        res.render('medecines', { medecines : allMedecines });
+//         if (!idMedecine) {
+//             res.status(404).json({message: "medecine not found"})
+//         }
+//         // res.status(200).json({message: "Done, Medecine has Deleted"})
+//         const allMedecines = await Medicine.find({})
+//         // res.status(200).json(allMedecines)
+//         res.render('medecines', { medecines : allMedecines });
 
-    } catch (error) {
-        res.status(500).json({message:error})
-    }
+//     } catch (error) {
+//         res.status(500).json({message:error})
+//     }
 
-})
+// })
 
 
 

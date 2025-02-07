@@ -26,7 +26,9 @@
           <h2 class="text-xl font-bold text-gray-700">Total Medecines</h2>
           <p class="text-3xl font-semibold text-green-600"> 
 
-            <%= medecines %>
+            
+            <%= totalMedeecines %>
+
 
           </p>
         </div>
@@ -39,19 +41,22 @@
           <h2 class="text-xl font-bold text-gray-700">Doses Missed</h2>
           <p class="text-3xl font-semibold text-red-600">
             
-            3
 
-         
 
-            <% medecineMissed.map((el) => { %>
-                 <p> <%= el  %></p>
-            <% }) %>
+          <%= Missed %>
+            
+
+
 
           </p>
         </div>
         <div class="text-center">
           <h2 class="text-xl font-bold text-gray-700">Total Doses Taken</h2>
-          <p class="text-3xl font-semibold text-blue-600">27</p>
+          <p class="text-3xl font-semibold text-blue-600">
+          <%= Tacken %>
+
+            
+          </p>
         </div>
       </section>
   
