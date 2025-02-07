@@ -25,18 +25,18 @@ A web application that helps users track their medicine doses, set reminders, an
 ```bash
 git clone https://github.com/yourusername/medicine-dose-tracker.git
 cd medicine-dose-tracker
-
+```
 
 
 ### Install Dependencies
 ```bash
 npm install
-
+```
 
 ### Start Application
 ```bash
 nodemon server.js
-
+```
 
 ### Screenshots
 
